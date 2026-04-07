@@ -1,0 +1,56 @@
+---
+import { getEntry } from "astro:content";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import settings from "../data/site-settings.json";
+
+const page = await getEntry("pages", "rehome");
+if (!page) throw new Error("Missing rehome page content.");
+const { Content } = await page.render();
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <Hero
+    compact={true}
+    kicker={page.data.heroKicker}
+    title={page.data.title}
+    summary={page.data.heroSummary ?? page.data.description}
+    primaryHref={page.data.ctaHref}
+    primaryLabel={page.data.ctaLabel}
+  />
+
+  <section class="content-page">
+    <div class="prose">
+      <Content />
+    </div>
+
+    <aside class="sidebar-card" id="rehome-form">
+      <p class="sidebar-card__eyebrow">Rehome inquiry</p>
+      <h2>Start with the details that matter most.</h2>
+      <form action={settings.forms.rehome} method="POST" class="site-form">
+        <label>
+          Your name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Species and number of animals
+          <input type="text" name="species" required />
+        </label>
+        <label>
+          Location
+          <input type="text" name="location" required />
+        </label>
+        <label>
+          Situation summary
+          <textarea name="message" rows="7" required></textarea>
+        </label>
+        <button class="button button--primary" type="submit">Send rehome request</button>
+      </form>
+      <p class="helper-text">Replace the placeholder form endpoint in site settings before launch.</p>
+    </aside>
+  </section>
+</BaseLayout>

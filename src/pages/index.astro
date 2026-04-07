@@ -1,0 +1,108 @@
+---
+import { getCollection } from "astro:content";
+import AnimalCard from "../components/AnimalCard.astro";
+import CTASection from "../components/CTASection.astro";
+import Hero from "../components/Hero.astro";
+import NewsCard from "../components/NewsCard.astro";
+import SectionIntro from "../components/SectionIntro.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import animals from "../data/animals.json";
+import settings from "../data/site-settings.json";
+
+const news = (await getCollection("news"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 2);
+---
+
+<BaseLayout>
+  <Hero
+    kicker="A sanctuary rooted in family"
+    title="Lifelong care for alpacas, llamas, and farmed animals in need."
+    summary="Four Roots Ranch pairs compassionate rescue with practical education, creating a safe home for residents and a trusted resource for the wider animal-care community."
+    primaryHref="/donate"
+    primaryLabel="Support the sanctuary"
+    secondaryHref="https://fourrootsranchsanctuary.substack.com/"
+    secondaryLabel="Follow on Substack"
+  />
+
+  <section class="homepage-grid">
+    <article class="feature-panel">
+      <p class="feature-panel__eyebrow">Who we are</p>
+      <h2>A family-run sanctuary in Bend, Oregon.</h2>
+      <p>
+        Four Roots Ranch began after the family welcomed alpacas in need and discovered a calling to create a forever-home model centered on patient, individualized care.
+      </p>
+      <a href="/community">Learn how the mission extends beyond the ranch</a>
+    </article>
+
+    <article class="feature-panel feature-panel--accent">
+      <p class="feature-panel__eyebrow">What we do</p>
+      <h2>Rescue, rehabilitation, education, and daily stewardship.</h2>
+      <p>
+        Residents include alpacas, llamas, goats, sheep, pigs, chickens, ducks, turkeys, and cats. The sanctuary also shares practical care knowledge with the broader community.
+      </p>
+      <a href="/animals">Meet the resident groups</a>
+    </article>
+  </section>
+
+  <section class="stack-section">
+    <SectionIntro
+      eyebrow="Resident care"
+      title="A calm, reliable care model for every species on site."
+      text="The redesigned site keeps resident stories front and center while making room for the practical realities of long-term sanctuary work."
+    />
+    <div class="card-grid">
+      {animals.entries.slice(0, 3).map((animal) => (
+        <AnimalCard {...animal} />
+      ))}
+    </div>
+  </section>
+
+  <section class="split-highlight">
+    <div>
+      <p class="section-intro__eyebrow">Giving back</p>
+      <h2>Support also means sharing knowledge.</h2>
+      <p>
+        The ranch helps people think through housing, herd dynamics, rehoming pathways, and the day-to-day decisions that shape animal wellbeing.
+      </p>
+      <div class="inline-links">
+        <a href="/rehome">Rehoming support</a>
+        <a href="/partner-with-us">Partnerships</a>
+        <a href="/faq">Common questions</a>
+      </div>
+    </div>
+    <aside class="stats-card">
+      <p class="stats-card__label">Current focus</p>
+      <h3>Resident stability first</h3>
+      <p>{settings.announcement}</p>
+      <a class="button button--ghost" href="/news">Read updates</a>
+    </aside>
+  </section>
+
+  <section class="stack-section">
+    <SectionIntro
+      eyebrow="Latest updates"
+      title="News from the ranch"
+      text="This migration includes a lightweight editorial workflow so updates can be published without rebuilding the whole site structure each time."
+    />
+    <div class="news-grid">
+      {news.map((post) => (
+        <NewsCard
+          href={`/news/${post.slug}/`}
+          title={post.data.title}
+          description={post.data.description}
+          publishDate={post.data.publishDate}
+        />
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    title="Help fund feed, bedding, medical care, and safer shelter."
+    text="Donations and community partnerships keep the sanctuary flexible enough to meet daily needs and future rescue readiness."
+    primaryHref="/donate"
+    primaryLabel="Donate today"
+    secondaryHref="/partner-with-us"
+    secondaryLabel="Explore partnerships"
+  />
+</BaseLayout>

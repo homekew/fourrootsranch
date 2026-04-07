@@ -1,0 +1,100 @@
+---
+import "../styles/global.css";
+import settings from "../data/site-settings.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} | ${settings.siteName}` : `${settings.siteName} | ${settings.tagline}`;
+const pageDescription = description ?? settings.seo.defaultDescription;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:image" content={new URL(settings.seo.ogImage, Astro.site).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonical.toString()} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <div class="site-shell site-header__inner">
+        <a class="site-brand" href="/">
+          <span class="site-brand__mark">FR</span>
+          <span>
+            <strong>{settings.siteName}</strong>
+            <small>{settings.location}</small>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary">
+          {settings.nav.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+          <a class="button button--primary button--nav" href="/donate">Donate</a>
+        </nav>
+      </div>
+      <div class="announcement-bar">
+        <div class="site-shell">
+          <p>{settings.announcement}</p>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="site-shell">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell site-footer__inner">
+        <div>
+          <p class="site-footer__eyebrow">Four Roots Ranch Animal Sanctuary</p>
+          <h2>Compassion, education, and practical care.</h2>
+          <p>{settings.seo.defaultDescription}</p>
+        </div>
+
+        <div class="site-footer__links">
+          <div>
+            <h3>Explore</h3>
+            {settings.nav.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
+          </div>
+          <div>
+            <h3>More</h3>
+            {settings.footerNav.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
+          </div>
+          <div>
+            <h3>Connect</h3>
+            {settings.social.map((item) => (
+              <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noreferrer" : undefined}>
+                {item.label}
+              </a>
+            ))}
+            <p class="site-footer__meta">EIN {settings.ein}</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

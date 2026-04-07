@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "name": "Senior Alpaca Residents",
+      "species": "Alpacas",
+      "careFocus": "Specialized nutrition, fleece care, and close monitoring through every season.",
+      "story": "Many of the sanctuary's alpacas arrive after major life changes or long periods without species-specific care. Their routines are built around gentleness, stability, and companionship.",
+      "accent": "sage"
+    },
+    {
+      "name": "Llama Guardians",
+      "species": "Llamas",
+      "careFocus": "Large-space enrichment, hoof care, and individualized handling plans.",
+      "story": "Llamas are at the heart of Four Roots Ranch's rescue work. They often become calm anchors in mixed herds while receiving the patient rehabilitation they need.",
+      "accent": "gold"
+    },
+    {
+      "name": "Pig Barn Crew",
+      "species": "Pigs",
+      "careFocus": "Warm bedding, safe shelter, hoof support, and soft-surface rest areas.",
+      "story": "The sanctuary's pigs require thoughtful daily management, especially in colder months. Their spaces are designed around comfort, routine, and practical accessibility.",
+      "accent": "clay"
+    },
+    {
+      "name": "Sheep And Goat Herds",
+      "species": "Sheep and goats",
+      "careFocus": "Balanced minerals, secure fencing, and herd-sensitive introductions.",
+      "story": "These residents thrive with careful social management and dependable nutrition. Their needs often overlap, but each herd still gets species-aware care and observation.",
+      "accent": "sage"
+    },
+    {
+      "name": "Bird And Barnyard Flock",
+      "species": "Chickens, ducks, and turkeys",
+      "careFocus": "Predator-safe housing, weather protection, and flock-health checks.",
+      "story": "Four Roots Ranch also supports a lively barnyard flock whose care includes clean shelter, species-appropriate feed, and safe outdoor access.",
+      "accent": "gold"
+    },
+    {
+      "name": "Cats And Companion Animals",
+      "species": "Barn cats and companions",
+      "careFocus": "Shelter, routine wellness support, and low-stress living spaces.",
+      "story": "Not every resident fits the same pattern, which is why the sanctuary's care model stays flexible. Individual needs shape each animal's forever-home plan.",
+      "accent": "clay"
+    }
+  ]
+}

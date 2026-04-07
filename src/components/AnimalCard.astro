@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  species: string;
+  careFocus: string;
+  story: string;
+  accent?: string;
+}
+
+const { name, species, careFocus, story, accent = "sage" } = Astro.props;
+---
+
+<article class={`animal-card animal-card--${accent}`}>
+  <p class="animal-card__species">{species}</p>
+  <h3>{name}</h3>
+  <p>{story}</p>
+  <dl>
+    <dt>Care focus</dt>
+    <dd>{careFocus}</dd>
+  </dl>
+</article>

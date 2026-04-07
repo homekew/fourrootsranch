@@ -1,0 +1,34 @@
+---
+import { getEntry } from "astro:content";
+import CTASection from "../components/CTASection.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = await getEntry("pages", "partner-with-us");
+if (!page) throw new Error("Missing partner-with-us page content.");
+const { Content } = await page.render();
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <Hero
+    compact={true}
+    kicker={page.data.heroKicker}
+    title={page.data.title}
+    summary={page.data.heroSummary ?? page.data.description}
+    primaryHref={page.data.ctaHref}
+    primaryLabel={page.data.ctaLabel}
+  />
+
+  <section class="prose prose--wide">
+    <Content />
+  </section>
+
+  <CTASection
+    title="Planning a service day, fundraiser, or team visit?"
+    text="Use the tour and partnership inquiry flow so the sanctuary can shape a thoughtful experience around the animals' routines."
+    primaryHref="/tours"
+    primaryLabel="Request a group experience"
+    secondaryHref="/contact"
+    secondaryLabel="Ask a general question"
+  />
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+import { getEntry } from "astro:content";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import settings from "../data/site-settings.json";
+
+const page = await getEntry("pages", "tours");
+if (!page) throw new Error("Missing tours page content.");
+const { Content } = await page.render();
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <Hero
+    compact={true}
+    kicker={page.data.heroKicker}
+    title={page.data.title}
+    summary={page.data.heroSummary ?? page.data.description}
+    primaryHref={page.data.ctaHref}
+    primaryLabel={page.data.ctaLabel}
+  />
+
+  <section class="content-page">
+    <div class="prose">
+      <Content />
+    </div>
+
+    <aside class="sidebar-card" id="tour-form">
+      <p class="sidebar-card__eyebrow">Tour inquiry</p>
+      <h2>Tell us about your group.</h2>
+      <form action={settings.forms.tour} method="POST" class="site-form">
+        <label>
+          Organization or group
+          <input type="text" name="organization" required />
+        </label>
+        <label>
+          Contact email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Estimated group size
+          <input type="text" name="groupSize" required />
+        </label>
+        <label>
+          Dates or season of interest
+          <input type="text" name="timing" />
+        </label>
+        <label>
+          Goals for the visit
+          <textarea name="message" rows="7" required></textarea>
+        </label>
+        <button class="button button--primary" type="submit">Submit inquiry</button>
+      </form>
+      <p class="helper-text">Group experiences are scheduled selectively to protect the residents' routines and comfort.</p>
+    </aside>
+  </section>
+</BaseLayout>

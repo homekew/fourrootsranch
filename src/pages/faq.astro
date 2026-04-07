@@ -1,0 +1,33 @@
+---
+import CTASection from "../components/CTASection.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import faqs from "../data/faqs.json";
+---
+
+<BaseLayout title="FAQ" description="Answers to common questions about the sanctuary, visiting, volunteering, and rehoming support.">
+  <Hero
+    compact={true}
+    kicker="Frequently asked questions"
+    title="Quick answers, with clearer paths to the right next step."
+    summary="The FAQ captures the questions supporters ask most often and points people toward the pages that now handle each request more directly."
+  />
+
+  <section class="faq-list">
+    {faqs.entries.map((faq) => (
+      <details class="faq-item">
+        <summary>{faq.question}</summary>
+        <p>{faq.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <CTASection
+    title="Still not finding what you need?"
+    text="Use the contact page for general questions or the rehome page when the situation involves placement support for an animal."
+    primaryHref="/contact"
+    primaryLabel="Contact the sanctuary"
+    secondaryHref="/rehome"
+    secondaryLabel="Open rehome support"
+  />
+</BaseLayout>

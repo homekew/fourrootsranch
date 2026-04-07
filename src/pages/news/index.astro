@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Hero from "../../components/Hero.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("news")).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout title="News" description="Updates, transition notes, and community stories from Four Roots Ranch.">
+  <Hero
+    compact={true}
+    kicker="From the ranch"
+    title="Sanctuary updates, stories, and next steps."
+    summary="The news section now lives in markdown-driven content so updates can stay lightweight, searchable, and easy to publish."
+  />
+
+  <section class="news-grid">
+    {posts.map((post) => (
+      <NewsCard
+        href={`/news/${post.slug}/`}
+        title={post.data.title}
+        description={post.data.description}
+        publishDate={post.data.publishDate}
+      />
+    ))}
+  </section>
+</BaseLayout>

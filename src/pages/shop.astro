@@ -1,0 +1,36 @@
+---
+import CTASection from "../components/CTASection.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import settings from "../data/site-settings.json";
+---
+
+<BaseLayout title="Shop" description="Support Four Roots Ranch through mission-aligned products and creative goods.">
+  <Hero
+    compact={true}
+    kicker="External storefront"
+    title="Creative goods that help fund sanctuary care."
+    summary="The main site now points to a dedicated storefront so product browsing and checkout can live in a tool built for ecommerce while the sanctuary story stays here."
+    primaryHref={settings.shopUrl}
+    primaryLabel="Open the storefront"
+    secondaryHref="/art"
+    secondaryLabel="Read about the creative work"
+  />
+
+  <section class="stack-section">
+    <div class="feature-panel feature-panel--accent">
+      <p class="feature-panel__eyebrow">What this replaces</p>
+      <h2>Squarespace shop content has been separated from the core site.</h2>
+      <p>
+        Product discovery, inventory, and checkout are now treated as storefront concerns. This keeps the sanctuary website lighter, faster, and easier to maintain on GitHub Pages.
+      </p>
+    </div>
+  </section>
+
+  <CTASection
+    title="Keep the mission visible while making checkout simpler."
+    text="When the external shop is finalized, update the storefront URL in the editable site settings file and the rest of the site will stay in sync."
+    primaryHref={settings.shopUrl}
+    primaryLabel="Go to the shop"
+  />
+</BaseLayout>

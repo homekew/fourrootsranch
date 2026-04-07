@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  publishDate: Date;
+}
+
+const { href, title, description, publishDate } = Astro.props;
+---
+
+<article class="news-card">
+  <p class="news-card__date">
+    {publishDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    })}
+  </p>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+  <a class="news-card__link" href={href}>Read update</a>
+</article>
