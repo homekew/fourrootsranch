@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page not found — Four Roots Ranch</title>
+<meta name="description" content="The page you're looking for isn't here. But the herd is." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --white: #FFFFFF;
+    --paper: #F7F5EF;
+    --linen: #EEEAE2;
+    --olive: #5D5646;
+    --text: #4D4C4B;
+    --text-soft: #6F6E6C;
+    --navy: #3E5974;
+    --navy-deep: #2D4359;
+    --tan: #9A7A61;
+    --font-display: 'Spectral', Georgia, serif;
+    --font-body: 'Open Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 36px;
+    text-align: center;
+  }
+  .wrap { max-width: 560px; }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--olive);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 18px;
+  }
+  p { color: var(--text); margin: 0 0 28px; font-size: 1.08rem; }
+  .meta {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+  .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+  }
+  .cta:hover { background: var(--navy-deep); color: var(--white); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="meta">404</div>
+    <h1>The page you're looking for isn't here.</h1>
+    <p>But the herd is. Head back to the homepage and meet them.</p>
+    <a class="cta" href="/">Back to Four Roots Ranch</a>
+  </div>
+</body>
+</html>

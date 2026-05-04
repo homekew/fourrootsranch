@@ -1,39 +1,75 @@
-# Four Roots Ranch
+# Four Roots Ranch — fourrootsranch.com
 
-Squarespace migration scaffold for [www.fourrootsranch.com](https://www.fourrootsranch.com), rebuilt as an Astro site and prepared for GitHub Pages hosting.
+The website for Four Roots Ranch Animal Sanctuary, a 501(c)(3) family-run animal sanctuary in Bend, Oregon.
+
+A forever home where second chances grow old.
 
 ## Stack
 
-- Astro static site
-- GitHub Pages deployment through GitHub Actions
-- Markdown and JSON content
-- Decap CMS admin scaffold for friendly editing
+- Plain HTML, CSS, and a small amount of vanilla JS — no framework, no build step
+- Hosted on GitHub Pages from this repo
+- DNS managed via Cloudflare
+- Custom domain configured via the `CNAME` file
 
-## Local setup
+## Files
 
-1. Install Node.js 20 or newer.
-2. Run `npm install`.
-3. Run `npm run dev`.
-4. Open the local dev URL shown by Astro.
+```
+.
+├── index.html         Homepage
+├── scenes.html        The herd (photo gallery)
+├── palette.html       Brand palette reference
+├── 404.html           Not-found page
+├── CNAME              Custom domain (fourrootsranch.com)
+├── robots.txt         Search engine crawler config
+├── sitemap.xml        Search engine sitemap
+├── images/            All site photography
+└── README.md          This file
+```
 
-## Before launch
+## Deployment
 
-- Replace the placeholder form endpoints in [src/data/site-settings.json](/Users/katecarr/Documents/New project/src/data/site-settings.json)
-- Replace the placeholder PayPal donation URL in [src/data/site-settings.json](/Users/katecarr/Documents/New project/src/data/site-settings.json)
-- Update the external storefront URL in [src/data/site-settings.json](/Users/katecarr/Documents/New project/src/data/site-settings.json)
-- Set the correct GitHub repo name in [public/admin/config.yml](/Users/katecarr/Documents/New project/public/admin/config.yml)
-- Provide the real photos, logos, uploads, and product imagery
-- Configure GitHub Pages to use the `main` branch workflow and the custom domain `www.fourrootsranch.com`
-- Point DNS at GitHub Pages after preview review is complete
+Files in this repo are served by GitHub Pages. To enable:
 
-## Content structure
+1. Repo Settings → Pages
+2. Source: `Deploy from a branch`
+3. Branch: `main`, folder: `/ (root)`
+4. Custom domain: `fourrootsranch.com` (already set via the `CNAME` file)
+5. Enforce HTTPS: on
 
-- `src/content/pages`: long-form page copy
-- `src/content/news`: sanctuary updates and stories
-- `src/data/animals.json`: structured animal-group cards
-- `src/data/faqs.json`: FAQ content
-- `src/data/site-settings.json`: navigation, links, forms, and shared site settings
+In Cloudflare DNS, point the apex record at GitHub Pages IPs:
 
-## CMS note
+```
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+CNAME www   homekew.github.io
+```
 
-The repo includes a Decap CMS admin scaffold in [public/admin](/Users/katecarr/Documents/New project/public/admin). For production GitHub auth, you will still need a compatible authentication flow or proxy for the GitHub backend.
+## Editing
+
+To update the site, edit the HTML files locally and push to the `main` branch. GitHub Pages rebuilds automatically (usually within a minute).
+
+Common updates:
+
+- **Add a new resident profile:** edit `scenes.html` and add to the gallery grid
+- **Update the donate link:** find every reference to `givebutter.com/...` and update
+- **Swap a photo:** drop the new file into `/images/` and update the `<img src="">` reference
+
+## Brand
+
+- Primary headline color: `#5D5646` (olive)
+- Body text: `#4D4C4B` (charcoal)
+- CTAs: `#3E5974` (navy)
+- Accent: `#9A7A61` (tan, used sparingly)
+- Backgrounds: `#FFFFFF` (white) and `#F7F5EF` (paper)
+- Borders/dividers: `#EEEAE2` (linen)
+
+Headlines: Spectral (Google Fonts)
+Body: Open Sans (Google Fonts)
+
+See `palette.html` for the full brand reference.
+
+## Contact
+
+info@fourrootsranch.com

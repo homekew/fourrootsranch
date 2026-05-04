@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Four Roots Ranch — Brand Palette</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --white:  #FFFFFF;
+  --paper:  #F7F5EF;
+  --linen:  #EEEAE2;
+  --olive:  #5D5646;
+  --text:   #4D4C4B;
+  --tan:    #9A7A61;
+  --navy:   #3E5974;
+
+  --text-soft: #6F6E6C;
+  --line: #EEEAE2;
+
+  --font-display: 'Spectral', Georgia, serif;
+  --font-body: 'Open Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main { position: relative; z-index: 2; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 80px 36px; }
+@media (max-width: 720px) { .wrap { padding: 56px 22px; } }
+
+.head { max-width: 720px; margin-bottom: 70px; }
+.head .crumb {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.head .crumb a {
+  color: var(--text-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color .2s, border-color .2s;
+}
+.head .crumb a:hover { color: var(--navy); border-color: var(--navy); }
+
+.head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-weight: 400;
+  color: var(--olive);
+  letter-spacing: -0.012em;
+  line-height: 1.05;
+  margin: 0 0 22px;
+}
+.head p {
+  font-size: 1.1rem;
+  color: var(--text);
+  max-width: 580px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* balance bar */
+.balance {
+  margin: 0 0 70px;
+  border: 1px solid var(--linen);
+  border-radius: 2px;
+  padding: 28px 32px;
+  background: var(--paper);
+}
+.balance h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--olive);
+  margin: 0 0 8px;
+}
+.balance p { color: var(--text-soft); font-size: 0.94rem; margin: 0 0 18px; }
+.balance-bar {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--linen);
+  background: var(--white);
+}
+.balance-bar > span {
+  display: block;
+  height: 100%;
+}
+.balance-legend {
+  margin-top: 14px;
+  display: flex; flex-wrap: wrap; gap: 18px;
+  font-size: 0.84rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+.balance-legend span::before {
+  content: "";
+  display: inline-block;
+  width: 10px; height: 10px;
+  margin-right: 8px; vertical-align: middle;
+  border-radius: 1px;
+  border: 1px solid rgba(60,55,45,0.1);
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 40px;
+}
+@media (max-width: 880px) { .palette { grid-template-columns: repeat(2, 1fr); gap: 48px 28px; } }
+@media (max-width: 540px) { .palette { grid-template-columns: 1fr; gap: 40px; } }
+
+.swatch-block { display: flex; flex-direction: column; }
+.swatch {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 24px;
+  position: relative;
+  border-radius: 2px;
+}
+.swatch.has-border { box-shadow: inset 0 0 0 1px var(--linen); }
+
+.role {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.name {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--olive);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.hex {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.use {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+  max-width: 32ch;
+}
+.use ul { padding-left: 1.1em; margin: 0; }
+.use ul li { margin-bottom: 4px; }
+
+/* combos */
+.combos {
+  margin-top: 100px;
+  padding-top: 56px;
+  border-top: 1px solid var(--linen);
+}
+.combos h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  color: var(--olive);
+  margin: 0 0 28px;
+  letter-spacing: -0.01em;
+}
+.combo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 720px) { .combo-grid { grid-template-columns: 1fr; } }
+
+.combo {
+  padding: 32px 28px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 200px;
+  border-radius: 2px;
+}
+.combo small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 16px;
+  opacity: 0.72;
+}
+.combo .btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 18px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 2px;
+  letter-spacing: 0;
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+.combo-1 { background: var(--white); color: var(--olive); border: 1px solid var(--linen); }
+.combo-1 .btn { background: var(--navy); color: var(--white); }
+
+.combo-2 { background: var(--paper); color: var(--olive); }
+.combo-2 .btn { background: var(--navy); color: var(--white); }
+
+.combo-3 { background: var(--white); color: var(--olive); border: 1px solid var(--linen); }
+.combo-3 .btn { background: var(--white); color: var(--navy); border: 1px solid var(--linen); }
+
+.combo-4 { background: var(--olive); color: var(--paper); }
+.combo-4 .btn { background: var(--white); color: var(--navy); }
+
+.combo-5 { background: var(--white); color: var(--olive); border: 1px solid var(--linen); }
+.combo-5 .btn { background: var(--navy); color: var(--white); }
+
+.combo-6 { background: var(--paper); color: var(--olive); border: 1px solid var(--linen); }
+.combo-6 .btn { background: var(--navy); color: var(--white); }
+
+.foot {
+  margin-top: 80px;
+  padding-top: 28px;
+  border-top: 1px solid var(--linen);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+  font-size: 0.86rem;
+  color: var(--text-soft);
+}
+.foot a { color: var(--text-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; padding-bottom: 1px; }
+.foot a:hover { color: var(--navy); border-color: var(--navy); }
+</style>
+</head>
+<body>
+<main>
+  <div class="wrap">
+    <header class="head">
+      <div class="crumb"><a href="index.html">Home</a> · Brand palette</div>
+      <h1>Warm, clean, modern, calm.</h1>
+      <p>
+        Seven colors with clear roles. White carries the page; paper warms the
+        occasional band; olive grounds the dark moments and the wordmark; navy
+        carries every important call to action; tan stays small.
+      </p>
+    </header>
+
+    <div class="balance">
+      <h3>Recommended balance</h3>
+      <p>Use white as the dominant color. Keep tan as a tiny accent only.</p>
+      <div class="balance-bar">
+        <span style="background: #FFFFFF; width: 70%; box-shadow: inset 0 0 0 1px #EEEAE2;"></span>
+        <span style="background: #F7F5EF; width: 15%;"></span>
+        <span style="background: #4D4C4B; width: 7%;"></span>
+        <span style="background: #5D5646; width: 5%;"></span>
+        <span style="background: #3E5974; width: 2%;"></span>
+        <span style="background: #9A7A61; width: 1%;"></span>
+      </div>
+      <div class="balance-legend">
+        <span style="--c: #FFFFFF;"><span style="background:#FFFFFF;"></span></span>
+        <span>White 70%</span>
+        <span>Paper 15%</span>
+        <span>Charcoal 7%</span>
+        <span>Olive 5%</span>
+        <span>Navy 2%</span>
+        <span>Tan 1%</span>
+      </div>
+    </div>
+
+    <section class="palette">
+
+      <div class="swatch-block">
+        <div class="swatch has-border" style="background: #FFFFFF;"></div>
+        <div class="role">Surface · Dominant</div>
+        <div class="name">White</div>
+        <div class="hex">#FFFFFF</div>
+        <div class="use">
+          <ul>
+            <li>Main page and header background</li>
+            <li>Cards, donation blocks, forms</li>
+            <li>Photo captions on light surfaces</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #F7F5EF;"></div>
+        <div class="role">Background · Soft warmth</div>
+        <div class="name">Paper</div>
+        <div class="hex">#F7F5EF</div>
+        <div class="use">
+          <ul>
+            <li>Hero section</li>
+            <li>Newsletter section</li>
+            <li>Occasional gentle page breaks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #EEEAE2;"></div>
+        <div class="role">Quiet · Borders</div>
+        <div class="name">Linen</div>
+        <div class="hex">#EEEAE2</div>
+        <div class="use">
+          <ul>
+            <li>Card borders, header bottom border</li>
+            <li>Thin dividers, subtle borders</li>
+            <li>Quiet callout backgrounds</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #5D5646;"></div>
+        <div class="role">Foundation · Dark</div>
+        <div class="name">Olive</div>
+        <div class="hex">#5D5646</div>
+        <div class="use">
+          <ul>
+            <li>Logo and main headlines</li>
+            <li>Large section titles</li>
+            <li>Dark background sections (education banner, footer)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #4D4C4B;"></div>
+        <div class="role">Foundation · Body</div>
+        <div class="name">Charcoal</div>
+        <div class="hex">#4D4C4B</div>
+        <div class="use">
+          <ul>
+            <li>Body text and navigation</li>
+            <li>Form labels</li>
+            <li>Footer text on light backgrounds</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #3E5974;"></div>
+        <div class="role">Action · CTAs</div>
+        <div class="name">Navy</div>
+        <div class="hex">#3E5974</div>
+        <div class="use">
+          <ul>
+            <li>Primary and donate buttons</li>
+            <li>Important links and sponsor buttons</li>
+            <li>Main calls to action</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch" style="background: #9A7A61;"></div>
+        <div class="role">Accent · Tiny only</div>
+        <div class="name">Tan</div>
+        <div class="hex">#9A7A61</div>
+        <div class="use">
+          <ul>
+            <li>Small lines, labels, icon details</li>
+            <li>Hover states, subtle borders</li>
+            <li>Never a large background</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="combos">
+      <h2>How they work together.</h2>
+      <div class="combo-grid">
+        <div class="combo combo-1">
+          A safe haven.
+          <small>White card · Olive type · Navy CTA</small>
+          <a class="btn" href="#">Donate</a>
+        </div>
+        <div class="combo combo-2">
+          A gentle warm break.
+          <small>Paper bg · Olive type · Navy CTA</small>
+          <a class="btn" href="#">Read more</a>
+        </div>
+        <div class="combo combo-3">
+          Secondary action.
+          <small>White bg · Linen border · Navy outline CTA</small>
+          <a class="btn" href="#">Subscribe</a>
+        </div>
+        <div class="combo combo-4">
+          Education at the heart.
+          <small>Olive band · Paper type · White CTA</small>
+          <a class="btn" href="#">Learn more</a>
+        </div>
+        <div class="combo combo-5">
+          Animal stories.
+          <small>White card · Linen border · Navy CTA</small>
+          <a class="btn" href="#">See programs</a>
+        </div>
+        <div class="combo combo-6">
+          Donation block.
+          <small>Paper bg · Linen border · Navy CTA</small>
+          <a class="btn" href="#">Give monthly</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div>Four Roots Ranch · Brand palette</div>
+      <a href="index.html">← Back to the site</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Four Roots Ranch — A Sanctuary for Alpacas, Llamas & Senior Animals in Bend, Oregon</title>
+<meta name="description" content="Four Roots Ranch is the largest sanctuary in the United States dedicated to alpacas and llamas. A family-run 501(c)(3) animal sanctuary in Bend, Oregon." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================================
+   FOUR ROOTS RANCH — palette
+     #FFFFFF white   — dominant background, cards, forms
+     #F7F5EF paper   — soft warmth, hero, newsletter
+     #EEEAE2 linen   — borders, dividers, hairlines
+     #5D5646 olive   — logo, headlines, dark sections
+     #4D4C4B text    — body, navigation
+     #9A7A61 tan     — tiny accents, hover states only
+     #3E5974 navy    — primary buttons, donate, links
+   =========================================================== */
+:root {
+  --white:      #FFFFFF;
+  --paper:      #F7F5EF;
+  --linen:      #EEEAE2;
+  --olive:      #5D5646;
+  --olive-deep: #423D31;
+  --text:       #4D4C4B;
+  --text-soft:  #6F6E6C;
+  --tan:        #9A7A61;
+  --tan-deep:   #7A604B;
+  --navy:       #3E5974;
+  --navy-deep:  #2D4359;
+  --line:       #EEEAE2;
+
+  --font-display: 'Spectral', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Open Sans', 'Helvetica Neue', system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(60,55,45,0.03), 0 6px 18px rgba(60,55,45,0.05);
+  --shadow-image: 0 8px 28px rgba(60,55,45,0.08);
+
+  --max: 1240px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--navy); text-decoration: none; transition: color .2s ease; }
+a:hover { color: var(--navy-deep); }
+::selection { background: var(--navy); color: var(--white); }
+
+/* very faint grain — keeps the warmth, not rustic */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.025 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: .5;
+  mix-blend-mode: multiply;
+}
+main, header, footer, section { position: relative; z-index: 2; }
+
+/* ---------- typography ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: -0.018em;
+  margin: 0 0 .5em 0;
+  line-height: 1.04;
+}
+h1 { font-size: clamp(2.3rem, 4.8vw, 4rem); font-weight: 500; line-height: 1.05; }
+h2 { font-size: clamp(2.1rem, 4.2vw, 3.4rem); line-height: 1.08; }
+h3 { font-size: clamp(1.45rem, 2.4vw, 1.95rem); line-height: 1.18; font-weight: 500; }
+p { margin: 0 0 1.1em 0; }
+
+.meta {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ---------- layout ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+.wrap-narrow { max-width: 860px; margin: 0 auto; padding: 0 36px; }
+section { padding: 130px 0; }
+@media (max-width: 720px) { section { padding: 84px 0; } .wrap, .wrap-narrow { padding: 0 22px; } }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--linen);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 36px;
+  max-width: var(--max); margin: 0 auto;
+}
+.brand { color: var(--olive); }
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.45rem;
+  letter-spacing: -0.012em;
+  line-height: 1;
+  display: inline-block;
+}
+.brand-text small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin-top: 5px;
+  letter-spacing: 0.015em;
+}
+
+.nav ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; gap: 32px; align-items: center;
+}
+.nav a.link {
+  color: var(--text);
+  font-size: 0.96rem;
+  font-weight: 500;
+}
+.nav a.link:hover { color: var(--navy); }
+@media (max-width: 880px) {
+  .nav ul li.link-item { display: none; }
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+  border: 1px solid transparent;
+}
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: var(--navy-deep); color: var(--white); }
+.btn-secondary {
+  background: var(--white);
+  color: var(--navy);
+  border-color: var(--linen);
+}
+.btn-secondary:hover { border-color: var(--tan); color: var(--navy-deep); }
+
+/* ---------- HERO ---------- */
+.hero {
+  background: var(--white);
+  padding: 50px 0 130px;
+  position: relative;
+  text-align: center;
+}
+.hero-band {
+  width: 100%;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+.hero-band img {
+  display: block;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: auto;
+}
+.hero-copy {
+  text-align: center;
+}
+.hero-copy h1 {
+  margin: 0 auto 26px;
+  max-width: 16ch;
+}
+.hero-copy .meta { margin-bottom: 30px; }
+.hero-lede {
+  font-size: 1.18rem;
+  color: var(--text);
+  max-width: 620px;
+  line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+@media (max-width: 720px) {
+  .hero { padding: 24px 0 84px; }
+  .hero-band { margin-bottom: 56px; }
+}
+
+/* ---------- LETTER ---------- */
+.letter {
+  background: var(--paper);
+  padding: 130px 0;
+}
+.letter-body {
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.85vw, 1.5rem);
+  line-height: 1.55;
+  color: var(--olive);
+  letter-spacing: -0.005em;
+}
+.letter-body p { margin-bottom: 1em; }
+.letter-body p:first-child::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 4.6em;
+  line-height: 0.85;
+  padding: 0.04em 0.12em 0 0;
+  color: var(--tan);
+}
+.letter-sign {
+  margin-top: 32px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+/* ---------- PILLARS ---------- */
+.pillars { background: var(--white); padding: 130px 0; }
+.pillars-head { max-width: 720px; margin-bottom: 72px; }
+.pillars-head p { font-size: 1.12rem; color: var(--text); }
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: center;
+  padding: 64px 0;
+  border-top: 1px solid var(--linen);
+}
+.pillar-row:last-child { border-bottom: 1px solid var(--linen); }
+.pillar-row.reverse { direction: rtl; }
+.pillar-row.reverse > * { direction: ltr; }
+@media (max-width: 880px) {
+  .pillar-row, .pillar-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; padding: 40px 0; }
+}
+.pillar-img {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: var(--paper);
+}
+.pillar-img img { width: 100%; height: 100%; object-fit: cover; }
+.pillar-copy h3 { margin-bottom: 22px; max-width: 18ch; }
+.pillar-copy p {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.pillar-copy p.with-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 3.6em;
+  line-height: 0.85;
+  padding: 0.02em 0.12em 0 0;
+  color: var(--tan);
+}
+
+/* ---------- MEET A RESIDENT (Nala) ---------- */
+.resident {
+  background: var(--white);
+  padding: 130px 0;
+  border-top: 1px solid var(--linen);
+}
+.resident-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 880px) {
+  .resident-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+.resident-photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper);
+}
+.resident-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.resident-label {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tan);
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.resident-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  color: var(--olive);
+  letter-spacing: -0.018em;
+  line-height: 1;
+  margin: 0 0 24px;
+}
+.resident-stats {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  margin-bottom: 28px;
+  border-top: 1px solid var(--linen);
+  border-bottom: 1px solid var(--linen);
+}
+.resident-stat {
+  display: flex; flex-direction: column;
+}
+.resident-stat .k {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.resident-stat .v {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--olive);
+}
+.resident-story {
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.resident-cta {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--navy);
+  border-bottom: 1px solid var(--navy);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+.resident-cta:hover { color: var(--navy-deep); border-color: var(--navy-deep); }
+
+/* ---------- EDUCATION BANNER ---------- */
+.banner {
+  background: var(--olive);
+  color: var(--paper);
+  padding: 130px 0;
+  position: relative;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 60px; left: 50%; transform: translateX(-50%);
+  width: 48px;
+  border-top: 1px solid var(--tan);
+}
+.banner-quote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  line-height: 1.32;
+  color: var(--paper);
+  letter-spacing: -0.012em;
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ---------- PROGRAMS ---------- */
+.programs { background: var(--white); padding: 130px 0; }
+.programs-head { max-width: 720px; margin-bottom: 60px; }
+.programs-head p { color: var(--text); font-size: 1.08rem; }
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 720px) { .programs-grid { grid-template-columns: 1fr; } }
+.program-card {
+  background: var(--white);
+  border: 1px solid var(--linen);
+  padding: 48px 42px 42px;
+  display: flex; flex-direction: column;
+  transition: border-color .25s ease;
+  border-radius: 2px;
+}
+.program-card:hover { border-color: var(--tan); }
+.program-card h3 { font-size: 1.55rem; margin-bottom: 14px; font-weight: 500; }
+.program-card p { color: var(--text); margin-bottom: 28px; flex: 1; font-size: 1rem; line-height: 1.7; }
+.program-card a {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.94rem;
+  color: var(--navy);
+  border-bottom: 1px solid var(--navy);
+  padding-bottom: 4px;
+  align-self: flex-start;
+}
+.program-card a:hover { color: var(--navy-deep); border-color: var(--navy-deep); }
+
+/* ---------- DONATE ---------- */
+.donate-cta {
+  background: var(--white);
+  padding: 130px 0;
+  border-top: 1px solid var(--linen);
+}
+.donate-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 880px) { .donate-grid { grid-template-columns: 1fr; gap: 48px; } }
+.donate-cta h2 { color: var(--olive); max-width: 14ch; }
+.donate-cta p { color: var(--text); font-size: 1.08rem; max-width: 520px; }
+
+.donate-amounts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.donate-amount {
+  background: var(--white);
+  border: 1px solid var(--linen);
+  padding: 30px 24px;
+  cursor: pointer;
+  transition: border-color .2s ease;
+  color: var(--text);
+  display: block;
+  border-radius: 2px;
+}
+.donate-amount:hover { border-color: var(--tan); }
+.donate-amount .amt {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.1rem;
+  display: block;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+  color: var(--navy);
+  line-height: 1;
+}
+.donate-amount .desc { font-size: 0.9rem; color: var(--text-soft); line-height: 1.45; }
+
+.donate-cta .donate-buttons { margin-top: 32px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- NEWSLETTER ---------- */
+.newsletter {
+  background: var(--paper);
+  padding: 110px 0;
+}
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 720px) { .newsletter-grid { grid-template-columns: 1fr; gap: 36px; } }
+.newsletter h3 {
+  color: var(--olive);
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  margin-bottom: 16px;
+  max-width: 14ch;
+  font-weight: 500;
+}
+.newsletter p { color: var(--text); margin-bottom: 0; max-width: 460px; font-size: 1.02rem; }
+.newsletter-form {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.newsletter-form input {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--linen);
+  outline: none;
+  background: var(--white);
+  padding: 16px 18px;
+  font-family: var(--font-body); font-size: 1rem; color: var(--olive);
+  border-radius: 2px;
+  transition: border-color .2s ease;
+}
+.newsletter-form input:focus { border-color: var(--navy); }
+.newsletter-form input::placeholder { color: var(--text-soft); }
+
+/* ---------- FOOTER ---------- */
+.foot {
+  background: var(--olive);
+  color: rgba(247,245,239,.72);
+  padding: 80px 0 32px;
+  position: relative;
+}
+.foot::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 36px; right: 36px;
+  height: 1px;
+  background: var(--tan);
+  opacity: .6;
+}
+.foot a { color: rgba(247,245,239,.88); }
+.foot a:hover { color: var(--white); }
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(247,245,239,.12);
+}
+@media (max-width: 720px) { .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+.foot h5 {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  color: var(--white);
+  margin: 0 0 16px 0;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 0.95rem; }
+.foot .brand-block .brand-text { color: var(--white); margin-bottom: 18px; display: block; font-size: 1.45rem; }
+.foot .brand-block .brand-text small { color: rgba(247,245,239,.55); }
+.foot .brand-block p { font-size: 0.95rem; color: rgba(247,245,239,.65); max-width: 320px; line-height: 1.7; }
+
+.foot-bottom {
+  display: flex; justify-content: space-between; padding-top: 24px;
+  font-size: 0.86rem; color: rgba(247,245,239,.55);
+  flex-wrap: wrap; gap: 14px;
+  align-items: center;
+}
+.foot-social { display: flex; gap: 24px; align-items: center; font-size: 0.92rem; font-weight: 500; }
+
+/* reveal */
+.reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Four Roots Ranch home">
+      <span class="brand-text">
+        Four Roots Ranch
+        <small>Animal Sanctuary · Bend, Oregon</small>
+      </span>
+    </a>
+
+    <ul>
+      <li class="link-item"><a class="link" href="#letter">Our story</a></li>
+      <li class="link-item"><a class="link" href="#what-we-do">What we do</a></li>
+      <li class="link-item"><a class="link" href="scenes.html">The herd</a></li>
+      <li class="link-item"><a class="link" href="#help">Get involved</a></li>
+      <li><a class="btn btn-primary" href="#donate">Donate</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-band reveal">
+    <img src="images/IMG_2355.png"
+         alt="Five of our residents — alpacas and llamas at Four Roots Ranch in Bend, Oregon" />
+  </div>
+  <div class="wrap hero-copy reveal" style="transition-delay:.1s">
+    <h1>A forever home where second chances grow old.</h1>
+    <div class="meta">A 501(c)(3) family-run sanctuary in Bend, Oregon</div>
+    <p class="hero-lede">
+      We provide lifelong care for more than 100 alpacas, llamas, and other farm animals.
+      Many of them seniors. All of them family.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#donate">Support our herd</a>
+      <a class="btn btn-secondary" href="#letter">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section class="letter" id="letter">
+  <div class="wrap-narrow">
+    <div class="letter-body reveal">
+      <p>
+        We're a family of six in Bend, Oregon, and Four Roots Ranch is named for our four
+        children. Our four roots.
+      </p>
+      <p>
+        Our journey with animals began in 2017, when we connected with a rescue rehoming
+        alpacas in need. We took in twenty, thinking we were simply giving them a soft place
+        to settle. They became part of our family almost immediately, and over time, the work
+        grew from there.
+      </p>
+      <p>
+        In 2019, Four Roots Ranch became a 501(c)(3) nonprofit. Today, more than 100 animals
+        call our sanctuary home, and we are the largest sanctuary in the United States
+        dedicated to alpacas and llamas.
+      </p>
+      <p>
+        The animals who come to us are often older, disabled, overlooked, or in need of a
+        slower, safer life. Some have come from difficult situations. Some have come from
+        families who loved them but could no longer keep them. However they arrive, our goal
+        is the same: steady care, dignity, and a home for the rest of their lives.
+      </p>
+      <div class="letter-sign">— Kate, founder</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="what-we-do">
+  <div class="wrap">
+    <article class="pillar-row">
+      <div class="pillar-img reveal">
+        <img src="images/IMG_2380.jpeg"
+             alt="Founder Kate with rescued alpacas at Four Roots Ranch" />
+      </div>
+      <div class="pillar-copy reveal" style="transition-delay:.1s">
+        <h3>A safe haven, especially for seniors.</h3>
+        <p class="with-cap">
+          Our sanctuary provides a safe haven for animals that have endured abuse,
+          abandonment, and neglect, and for those whose owners can no longer care for
+          them due to significant life changes. We are also home to several disabled
+          animals and a large population of seniors who require special attention.
+        </p>
+      </div>
+    </article>
+
+    <article class="pillar-row reverse">
+      <div class="pillar-img reveal">
+        <img src="images/IMG_1717.jpeg"
+             alt="A senior alpaca being cared for at Four Roots Ranch sanctuary" />
+      </div>
+      <div class="pillar-copy reveal" style="transition-delay:.1s">
+        <h3>Nine species. One herd.</h3>
+        <p class="with-cap">
+          While alpacas and llamas are our specialty, we also care for sheep, goats,
+          pigs, chickens, ducks, turkeys, and cats. We share their stories quietly
+          and honestly, to raise awareness about compassionate care, the unique needs
+          of each animal, and the kind of ownership that protects them.
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- MEET A RESIDENT -->
+<!-- Photo placeholder: swap mockups/IMG_7697... with an actual portrait of Nala when available -->
+<section class="resident">
+  <div class="wrap resident-grid">
+    <div class="resident-photo reveal">
+      <img src="images/IMG_7697.jpeg"
+           alt="Nala, a senior alpaca at Four Roots Ranch" />
+    </div>
+
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="resident-label">A resident</div>
+      <h2 class="resident-name">Meet Nala.</h2>
+
+      <div class="resident-stats">
+        <div class="resident-stat">
+          <span class="k">Species</span>
+          <span class="v">Alpaca</span>
+        </div>
+        <div class="resident-stat">
+          <span class="k">Age</span>
+          <span class="v">23 years</span>
+        </div>
+        <div class="resident-stat">
+          <span class="k">With us since</span>
+          <span class="v">2018</span>
+        </div>
+      </div>
+
+      <p class="resident-story">
+        Nala is one of our oldest residents. She came to us in our second year and has been
+        part of every shearing weekend since. At 23, she's still thriving, a quiet reminder
+        that consistent care, year after year, is the heart of what we do.
+      </p>
+
+      <a class="resident-cta" href="scenes.html">Meet the rest of the herd</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION BANNER -->
+<section class="banner">
+  <div class="wrap-narrow">
+    <p class="banner-quote reveal">
+      Education is at the heart of our mission. Through workshops, community
+      outreach, and accessible resources, we equip people with the tools to make
+      informed, thoughtful decisions about the animals in their care.
+    </p>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="help">
+  <div class="wrap">
+    <div class="programs-head reveal">
+      <h2>Ways to help.</h2>
+      <p>From a one-time gift to surrendering an animal in need, there are many ways to be part of this work.</p>
+    </div>
+
+    <div class="programs-grid">
+      <article class="program-card reveal">
+        <h3>Healthy Herd Fund</h3>
+        <p>
+          Recurring monthly support that keeps our medical, feed, and senior-care
+          programs steady. The quiet backbone of sanctuary work.
+        </p>
+        <a href="https://www.fourrootsranch.com/healthyherd">Join the fund</a>
+      </article>
+
+      <article class="program-card reveal" style="transition-delay:.05s">
+        <h3>Rehome an animal</h3>
+        <p>
+          Life changes. We help when an alpaca, llama, or other farm animal can no
+          longer stay where they are, with thoughtful intake and no judgment.
+        </p>
+        <a href="https://www.fourrootsranch.com/rehome">Start the conversation</a>
+      </article>
+
+      <article class="program-card reveal" style="transition-delay:.1s">
+        <h3>Community and education</h3>
+        <p>
+          Workshops, herd-management guidance, feeding and medical advice, adoption
+          referrals. Whether you have one animal or a hundred, we are here.
+        </p>
+        <a href="https://www.fourrootsranch.com/community">See programs</a>
+      </article>
+
+      <article class="program-card reveal" style="transition-delay:.15s">
+        <h3>Art for the animals</h3>
+        <p>
+          Original artwork inspired by our residents. Every piece supports the care
+          of the herd that inspired it.
+        </p>
+        <a href="https://www.fourrootsranch.com/art">Browse artwork</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate-cta" id="donate">
+  <div class="wrap donate-grid">
+    <div class="reveal">
+      <h2>Your gift becomes feed, medical care, and shelter.</h2>
+      <p>
+        Every dollar feeds, treats, shelters, or simply keeps the lights on for over
+        a hundred animals. We are a small family running a large sanctuary. Your
+        support is the difference between scraping by and being able to say yes to the
+        next animal who needs us.
+      </p>
+      <div class="donate-buttons">
+        <a class="btn btn-primary" href="https://www.fourrootsranch.com/donate">Donate now</a>
+        <a class="btn btn-secondary" href="https://www.fourrootsranch.com/healthyherd">Give monthly</a>
+      </div>
+    </div>
+
+    <div class="donate-amounts reveal" style="transition-delay:.1s">
+      <a class="donate-amount" href="https://www.fourrootsranch.com/donate">
+        <span class="amt">$25</span>
+        <span class="desc">A week of hay for one alpaca</span>
+      </a>
+      <a class="donate-amount" href="https://www.fourrootsranch.com/donate">
+        <span class="amt">$75</span>
+        <span class="desc">A routine vet visit for a senior</span>
+      </a>
+      <a class="donate-amount" href="https://www.fourrootsranch.com/donate">
+        <span class="amt">$150</span>
+        <span class="desc">A month of medical care</span>
+      </a>
+      <a class="donate-amount" href="https://www.fourrootsranch.com/donate">
+        <span class="amt">Other</span>
+        <span class="desc">Choose your own amount</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="wrap newsletter-grid">
+    <div class="reveal">
+      <h3>Letters from the herd, sent now and then.</h3>
+      <p>Animal stories, sanctuary updates, and the occasional baby alpaca. Never too often.</p>
+    </div>
+    <form class="newsletter-form reveal" style="transition-delay:.1s" onsubmit="event.preventDefault(); window.location='https://substack.com/@fourrootsranch';">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" required />
+      <button class="btn btn-primary" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="brand-block">
+        <span class="brand-text">Four Roots Ranch<small>Animal Sanctuary · Bend, Oregon</small></span>
+        <p>
+          A family-run 501(c)(3) sanctuary providing a forever home where second chances grow old.
+        </p>
+      </div>
+
+      <div>
+        <h5>The sanctuary</h5>
+        <ul>
+          <li><a href="#letter">Our story</a></li>
+          <li><a href="#what-we-do">What we do</a></li>
+          <li><a href="scenes.html">The herd</a></li>
+          <li><a href="https://www.fourrootsranch.com/news">News</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="https://www.fourrootsranch.com/donate">Donate</a></li>
+          <li><a href="https://www.fourrootsranch.com/healthyherd">Healthy Herd Fund</a></li>
+          <li><a href="https://www.fourrootsranch.com/rehome">Rehome an animal</a></li>
+          <li><a href="https://www.fourrootsranch.com/partner">Partner with us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@fourrootsranch.com">info@fourrootsranch.com</a></li>
+          <li>Bend, Oregon</li>
+          <li><a href="https://www.fourrootsranch.com/faq">FAQ</a></li>
+          <li><a href="https://www.fourrootsranch.com/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 Four Roots Ranch Animal Sanctuary · 501(c)(3) nonprofit</div>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/fourrootsranch">Instagram</a>
+        <a href="https://substack.com/@fourrootsranch">Substack</a>
+        <a href="mailto:info@fourrootsranch.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
